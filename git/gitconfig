@@ -1,0 +1,19 @@
+[user]
+	name = John Doe
+	email = john.doe@foo.bar
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	bump = !bash -c 'source $HOME/.git-functions.sh && bump $0'
+	sync = !bash -c 'source $HOME/.git-functions.sh && sync $0'
+	track = !bash -c 'source $HOME/.git-functions.sh && track $0'
+[rebase]
+	autostash = true
+[pull]
+	rebase = true
+[push]
+	default = current
+[init]
+	defaultBranch = master

@@ -1,0 +1,42 @@
+---
+- clean: ["~"]
+
+- link:
+    ~/.gitconfig:
+      path: git/gitconfig
+      create: true
+    ~/.git-functions.sh:
+      path: git/git-functions.sh
+      create: true
+    ~/.zshrc:
+      path: zsh/zshrc.zsh
+      create: true
+    ~/.p10k.zsh:
+      path: zsh/p10k.zsh
+      create: true
+    ~/.zshenv:
+      path: zsh/zshenv.zsh
+      create: true
+    ~/.env.zsh:
+      path: zsh/env.zsh
+      create: true
+    ~/.zsh-functions.sh:
+      path: zsh/zsh-functions.sh
+      create: true
+
+- shell:
+    - command: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      description: Install Homebrew
+      stdin: true
+      stdout: true
+      stderr: true
+    - command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"
+      description: Install ZSH for Humans
+      stdin: true
+      stdout: true
+      stderr: true
+    - command: xargs brew reinstall < brew/leaves.txt
+      description: Install brew packages
+      stdin: true
+      stdout: true
+      stderr: true
