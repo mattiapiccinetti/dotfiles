@@ -40,10 +40,13 @@ source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.
 # jenv add $(brew --prefix)/opt/openjdk@11/libexec/openjdk.jdk/Contents/Home
 # jenv add $(brew --prefix)/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
 # 
+# sudo ln -sfn $(brew --prefix)/opt/openjdk@8/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-8.jdk
+# sudo ln -sfn $(brew --prefix)/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
+# sudo ln -sfn $(brew --prefix)/opt/openjdk@17/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-17.jdk
+#
 # jenv enable-plugin maven
 # jenv enable-plugin export
 # 
-# jenv global 11
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
