@@ -1,7 +1,47 @@
 #!/bin/bash
 
 path () {
-	echo "$(pwd)/$1"
+	[[ $# -eq 0 ]] && echo "usage: $0 <filename> (show absolute file path)" || echo "$(pwd)/$1"
+}
+
+uuid () {
+    echo "${$(uuidgen):l}" | tr -d '\n' | pbcopy
+}
+
+pk () {
+	[[ $# -eq 0 ]] && echo "usage: $0 <port> (kill a process by port)" || lsof -ti :$1 | xargs kill
+}
+
+init_jdks () {
+	versions=(8 11 17)
+
+	for version in "$versions[@]"
+	do
+		echo
+		echo "Adding OpenJDK $version to jEnv"
+		jenv add $(brew --prefix)/opt/openjdk@$version/libexec/openjdk.jdk/Contents/Home
+
+		echo "Symlinking OpenJDK $version directory to /Library/Java/JavaVirtualMachines"
+		sudo ln -sfn $(brew --prefix)/opt/openjdk@$version/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-$version.jdk
+	done
+
+	plugins=("maven" "export")
+	for plugin in "$plugins[@]"
+	do
+		echo
+		echo "Enabling jEnv plugin: $plugin"
+		jenv enable-plugin $plugin
+	done
+
+	echo
+	echo "Installed JDKs:"
+	jenv versions --bare
+
+	echo
+	echo "JAVA_HOME: $JAVA_HOME"
+
+	echo
+	jenv doctor
 }
 
 lonfo () {

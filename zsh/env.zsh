@@ -19,38 +19,24 @@ eval "$(pyenv init --path)"
 export PATH="$HOME/.poetry/bin:$PATH"
 
 export PATH="$HOME/.local/bin:$PATH"
+export EDITOR="/usr/local/bin/code"
 
 alias z\!="exec zsh"
-alias z\?="code $HOME/.zshrc"
+alias z\?="code $HOME/.dotfiles"
 alias ls="lsd"
 alias top="glances"
 alias cat="bat -p"
 alias tree="tree -a -I .git"
 alias ls="${aliases[ls]:-ls} -A"
-
-export EDITOR="/usr/local/bin/code"
+alias ll="ls -la"
 
 # Google Cloud SDK
 export PATH="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin:$PATH"
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
 # Jenv
-# 
-# jenv add $(brew --prefix)/opt/openjdk@8/libexec/openjdk.jdk/Contents/Home
-# jenv add $(brew --prefix)/opt/openjdk@11/libexec/openjdk.jdk/Contents/Home
-# jenv add $(brew --prefix)/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
-# 
-# sudo ln -sfn $(brew --prefix)/opt/openjdk@8/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-8.jdk
-# sudo ln -sfn $(brew --prefix)/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
-# sudo ln -sfn $(brew --prefix)/opt/openjdk@17/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-17.jdk
-#
-# jenv enable-plugin maven
-# jenv enable-plugin export
-# 
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
 # Mix
 source $HOME/.zsh-functions.sh
-
-
