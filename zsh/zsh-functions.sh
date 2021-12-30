@@ -44,6 +44,32 @@ init_jdks () {
 	jenv doctor
 }
 
+loop () {
+	if [ $# -eq 0 ]; then
+		echo "usage: $0 <command> <interval> (execute a program periodically)"
+	else
+		command=$1
+		interval=${2:-1}
+		counter=0
+		started=$(date)
+
+		while true; do
+			clear
+			counter=$((counter+1))
+
+			echo -e "Started: \t$started"
+			echo -e "Current: \t$(date)"
+			echo -e "Command: \t$command"
+			echo -e "Interval: \tevery ${interval}s"
+			echo -e "Count: \t\t$counter"
+			echo
+
+			eval $command
+			sleep $interval
+		done
+	fi
+}
+
 lonfo () {
 	cat << EOF
 
