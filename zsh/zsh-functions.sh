@@ -13,7 +13,7 @@ pk () {
 }
 
 init_jdks () {
-	versions=(8 11 17)
+	versions=(8 11 17 18)
 
 	for version in "$versions[@]"
 	do
@@ -22,6 +22,7 @@ init_jdks () {
 		jenv add $(brew --prefix)/opt/openjdk@$version/libexec/openjdk.jdk/Contents/Home
 
 		echo "Symlinking OpenJDK $version directory to /Library/Java/JavaVirtualMachines"
+
 		sudo ln -sfn $(brew --prefix)/opt/openjdk@$version/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-$version.jdk
 	done
 
@@ -70,6 +71,17 @@ loop () {
 	fi
 }
 
+work () {
+    apps=(
+		"Slack.app"
+        "Microsoft Teams.app"
+        "Microsoft Outlook.app"
+		"Citrix Secure Access.app"
+    )
+
+    for app in "$apps[@]"; do open -a $app; done
+}
+
 lonfo () {
 	cat << EOF
 
@@ -99,3 +111,9 @@ lonfo () {
 
 EOF
 }
+
+git_user () {
+	git config user.name "Mattia Piccinetti"
+	git config user.email "mattiapiccinetti@users.noreply.github.com"
+}
+

@@ -7,6 +7,15 @@ sync () {
     git pull origin develop:develop
 }
 
+sync-repo () {
+    for branch in $(git branch -a | grep remotes | grep -v HEAD); do
+        git branch --track ${branch##*/} $branch
+    done
+
+    git fetch --all
+    git pull --all
+}
+
 bump () {
     git commit -am "Bump version to $1"
 }
